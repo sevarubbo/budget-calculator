@@ -13,6 +13,14 @@ export default {
         test: /\.js(x)?$/,
         loader: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {loader: "style-loader"},
+          {loader: "css-loader"},
+          {loader: "sass-loader"}
+        ]
       }
     ]
   },
