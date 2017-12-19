@@ -1,0 +1,33 @@
+{
+  "name": "budget-calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.babel.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sevarubbo/budget-calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sevarubbo/budget-calculator/issues"
+  },
+  "homepage": "https://github.com/sevarubbo/budget-calculator",
+  "dependencies": {
+    "react": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "copy-webpack-plugin": "^4.3.0",
+    "react-dom": "^16.2.0",
+    "webpack": "^3.10.0"
+  }
+}
