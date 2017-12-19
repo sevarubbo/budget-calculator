@@ -1,5 +1,18 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import TotalSpend from './components/TotalSpend/Component';
+import {Provider} from 'react-redux';
+import {applyMiddleware, createStore} from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import reducers from './reducers';
+import TotalSpendContainer from './components/TotalSpend/Container';
 
-ReactDOM.render(<TotalSpend/>, document.getElementById('root'));
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <div>
+      <TotalSpendContainer/>
+    </div>
+  </Provider>,
+  document.getElementById('root')
+);

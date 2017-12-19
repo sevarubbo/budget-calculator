@@ -3,18 +3,24 @@
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "experimentalObjectRestSpread": true
     }
   },
   "env": {
     "browser": true,
     "node": true
   },
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "rules": {
     "semi": ["error"],
     "padded-blocks": ["error", "never"],
     "no-multiple-empty-lines": "error",
-    "quotes": ["error", "single"]
+    "quotes": ["error", "single"],
+    "no-extra-parens": ["error"],
+    "space-in-parens": ["error"]
   }
 }
