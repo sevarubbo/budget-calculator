@@ -19,6 +19,10 @@ export default class TotalSpend extends React.Component {
    * Hooks
    */
 
+  componentWillMount () {
+    this.props.fetchCategories();
+  }
+
   /**
    * @param {Object} e
    */
@@ -72,6 +76,8 @@ export default class TotalSpend extends React.Component {
   static get propTypes () {
     return {
       categories: PropTypes.arrayOf(PropTypes.object),
+
+      fetchCategories: PropTypes.func,
       createCategory: PropTypes.func
     };
   }
