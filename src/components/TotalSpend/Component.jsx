@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './styles.scss';
 
 export default class TotalSpend extends React.Component {
@@ -9,7 +10,6 @@ export default class TotalSpend extends React.Component {
     super(...arguments);
 
     this.state = {
-      categories: [],
       isAddingCategory: false,
       newCategoryName: ''
     };
@@ -35,9 +35,12 @@ export default class TotalSpend extends React.Component {
    */
   addCategory () {
     this.setState({
-      categories: [...this.state.categories, {name: this.state.newCategoryName}],
       isAddingCategory: false,
       newCategoryName: ''
+    });
+
+    this.props.createCategory({
+      name: this.state.newCategoryName
     });
   }
 
@@ -47,7 +50,7 @@ export default class TotalSpend extends React.Component {
   render () {
     return (
       <div className='total-spend'>
-        { this.state.categories.map((category, index) =>
+        { this.props.categories.map((category, index) =>
           <div key={index}>
             { category.name }
           </div>
@@ -62,4 +65,15 @@ export default class TotalSpend extends React.Component {
       </div>
     );
   }
+
+  /**
+   * @returns {Object}
+   */
+  static get propTypes () {
+    return {
+      categories: PropTypes.arrayOf(PropTypes.object),
+      createCategory: PropTypes.func
+    };
+  }
 }
+
