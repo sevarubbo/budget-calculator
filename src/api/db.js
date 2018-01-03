@@ -21,13 +21,15 @@ DBRequest.onerror = function () {
   throw new Error('Database error');
 };
 
-DBRequest.onupgradeneeded = function () {
+DBRequest.onupgradeneeded = function (event) {
   /** @type {IDBDatabase} */
   const db = DBRequest.result;
 
-  db.createObjectStore('category', {
-    keyPath: 'id',
-    autoIncrement: true
-  });
+  if (event.oldVersion < 1) {
+    db.createObjectStore('category', {
+      keyPath: 'id',
+      autoIncrement: true
+    });
+  }
 };
 

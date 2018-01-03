@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import Component from './Component';
 import {getEntities} from '../../getters/entity';
-import {createOneEntity, fetchAllEntities} from '../../actions/async/entity';
+import {createOneEntity, deleteOneEntity, fetchAllEntities} from '../../actions/async/entity';
 
 /**
  * @param {Object} state
@@ -26,6 +26,9 @@ function mapDispatchToProps (dispatch) {
     },
     createCategory (attributes) {
       dispatch(createOneEntity('category', attributes));
+    },
+    deleteCategory (categoryId) {
+      dispatch(deleteOneEntity('category', categoryId));
     }
   };
 }

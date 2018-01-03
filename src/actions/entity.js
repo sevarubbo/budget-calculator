@@ -13,3 +13,17 @@ export function pushEntity (entityType, attributes) {
     });
   };
 }
+
+/**
+ * @param {String} entityType
+ * @param {String} entityId
+ * @returns {Function}
+ */
+export function deleteEntity (entityType, entityId) {
+  return function (dispatch) {
+    return dispatch({
+      type: `DELETE_${_(entityType).snakeCase().toUpperCase()}`,
+      id: entityId
+    });
+  };
+}

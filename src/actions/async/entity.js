@@ -1,5 +1,32 @@
 import {API} from '../../api';
-import {pushEntity} from '../entity';
+import {deleteEntity, pushEntity} from '../entity';
+
+/**
+ * @param {String} entityType
+ * @param {Object} attributes
+ * @return {Function}
+ */
+export function createOneEntity (entityType, attributes) {
+  return function (dispatch) {
+    API.createOne(entityType, attributes).then(attributes => {
+      dispatch(pushEntity(entityType, attributes));
+    });
+  };
+}
+
+/**
+ *
+ * @param {String} entityType
+ * @param {String} entityId
+ * @return {Function}
+ */
+export function deleteOneEntity (entityType, entityId) {
+  return function (dispatch) {
+    API.deleteOne(entityType, entityId).then(() => {
+      dispatch(deleteEntity(entityType, entityId));
+    });
+  };
+}
 
 /**
  * @param {String} entityType
@@ -11,19 +38,6 @@ export function fetchAllEntities (entityType) {
       entities.forEach(attributes => {
         dispatch(pushEntity(entityType, attributes));
       });
-    });
-  };
-}
-
-/**
- * @param {String} entityType
- * @param {Object} attributes
- * @return {Function}
- */
-export function createOneEntity (entityType, attributes) {
-  return function (dispatch) {
-    API.createOne(entityType, attributes).then(attributes => {
-      dispatch(pushEntity(entityType, attributes));
     });
   };
 }

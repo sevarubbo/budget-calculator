@@ -1,7 +1,6 @@
 import {openDB} from './db';
 
 export const API = {
-
   /**
    * @param {String} entityType
    * @param {Object} attributes
@@ -49,6 +48,25 @@ export const API = {
       const transaction = db.transaction(entityType, 'readwrite');
       const objectStore = transaction.objectStore(entityType);
       const request = objectStore.getAll();
+
+      return new Promise(resolve => {
+        request.onsuccess = () => {
+          resolve(request.result);
+        };
+      });
+    });
+  },
+
+  /**
+   * @param {String} entityType
+   * @param {String} entityId
+   * @return {Promise.<Array.<Object>>}
+   */
+  deleteOne (entityType, entityId) {
+    return openDB().then(db => {
+      const transaction = db.transaction(entityType, 'readwrite');
+      const objectStore = transaction.objectStore(entityType);
+      const request = objectStore.delete(entityId);
 
       return new Promise(resolve => {
         request.onsuccess = () => {

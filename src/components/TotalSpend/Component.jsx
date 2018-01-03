@@ -55,9 +55,10 @@ export default class TotalSpend extends React.Component {
     return (
       <div className='total-spend'>
         { this.props.categories.map((category, index) =>
-          <div key={index}>
+          <article key={index}>
             { category.name }
-          </div>
+            <button type='button' onClick={() => this.props.deleteCategory(category.id)}>Delete</button>
+          </article>
         ) }
         { this.state.isAddingCategory &&
           <form onSubmit={(e) => {e.preventDefault(); this.addCategory();}}>
@@ -69,17 +70,13 @@ export default class TotalSpend extends React.Component {
       </div>
     );
   }
-
-  /**
-   * @returns {Object}
-   */
-  static get propTypes () {
-    return {
-      categories: PropTypes.arrayOf(PropTypes.object),
-
-      fetchCategories: PropTypes.func,
-      createCategory: PropTypes.func
-    };
-  }
 }
+
+TotalSpend.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.object),
+
+  fetchCategories: PropTypes.func,
+  createCategory: PropTypes.func,
+  deleteCategory: PropTypes.func
+};
 
