@@ -34,10 +34,10 @@ function mapDispatchToProps (dispatch) {
   };
 }
 
-const CategoryContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
+const SpendCategoryContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
 
-CategoryContainer.propTypes = {
+SpendCategoryContainer.propTypes = {
   category: PropTypes.instanceOf(Category)
 };
 
-export default CategoryContainer;
+export default SpendCategoryContainer;

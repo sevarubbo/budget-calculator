@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
-import CategoryModel from '../../../models/category';
+import Category from '../../../models/category';
 
-export default class Category extends React.Component {
+export default class SpendCategory extends React.Component {
   /**
    *
    */
@@ -34,7 +34,7 @@ export default class Category extends React.Component {
     const category = this.props.category;
 
     return (
-      <tr key={category.id}>
+      <tr className='spend-category' key={category.id}>
         <td>
           { category.name }
         </td>
@@ -49,8 +49,8 @@ export default class Category extends React.Component {
   }
 }
 
-Category.propTypes = {
-  category: PropTypes.instanceOf(CategoryModel),
+SpendCategory.propTypes = {
+  category: PropTypes.instanceOf(Category),
 
   deleteCategory: PropTypes.func
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
-import CategoryContainer from './Category/Container';
+import SpendCategoryContainer from './SpendCategory/Container';
 import Category from '../../models/category';
 
 export default class TotalSpend extends React.Component {
@@ -63,7 +63,7 @@ export default class TotalSpend extends React.Component {
         <table>
           <tbody>
             { categories.map(category =>
-              <CategoryContainer
+              <SpendCategoryContainer
                 key={category.id}
                 category={category}
               />
