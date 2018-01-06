@@ -1,14 +1,15 @@
 import {connect} from 'react-redux';
 import Component from './Component';
 import {getEntities} from '../../getters/entity';
-import {createOneEntity, deleteOneEntity, fetchAllEntities} from '../../actions/async/entity';
+import {createOneEntity, fetchAllEntities} from '../../actions/async/entity';
+import Category from '../../models/category';
 
 /**
  * @param {Object} state
  * @return {Object}
  */
 function mapStateToProps (state) {
-  const categories = getEntities(state, 'category');
+  const categories = getEntities(state, 'category').map(entity => new Category(entity));
 
   return {
     categories
@@ -21,14 +22,11 @@ function mapStateToProps (state) {
  */
 function mapDispatchToProps (dispatch) {
   return {
-    fetchCategories () {
-      dispatch(fetchAllEntities('category'));
-    },
     createCategory (attributes) {
       dispatch(createOneEntity('category', attributes));
     },
-    deleteCategory (categoryId) {
-      dispatch(deleteOneEntity('category', categoryId));
+    fetchCategories () {
+      dispatch(fetchAllEntities('category'));
     }
   };
 }

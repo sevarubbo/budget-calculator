@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
+import CategoryContainer from './Category/Container';
+import Category from '../../models/category';
 
 export default class TotalSpend extends React.Component {
   /**
@@ -19,6 +21,8 @@ export default class TotalSpend extends React.Component {
    * Hooks
    */
 
+  /**
+   */
   componentWillMount () {
     this.props.fetchCategories();
   }
@@ -52,14 +56,20 @@ export default class TotalSpend extends React.Component {
    * @returns {String}
    */
   render () {
+    /** @type {Array.<Object>} */
+    const categories = this.props.categories;
     return (
       <div className='total-spend'>
-        { this.props.categories.map((category, index) =>
-          <article key={index}>
-            { category.name }
-            <button type='button' onClick={() => this.props.deleteCategory(category.id)}>Delete</button>
-          </article>
-        ) }
+        <table>
+          <tbody>
+            { categories.map(category =>
+              <CategoryContainer
+                key={category.id}
+                category={category}
+              />
+            ) }
+          </tbody>
+        </table>
         { this.state.isAddingCategory &&
           <form onSubmit={(e) => {e.preventDefault(); this.addCategory();}}>
             <input type='text' name='new-category-name' onChange={e => this.onCategoryNameChangeHandler(e)}/>
@@ -73,7 +83,7 @@ export default class TotalSpend extends React.Component {
 }
 
 TotalSpend.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.object),
+  categories: PropTypes.arrayOf(PropTypes.instanceOf(Category)),
 
   fetchCategories: PropTypes.func,
   createCategory: PropTypes.func,
