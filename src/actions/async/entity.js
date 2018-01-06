@@ -15,20 +15,6 @@ export function createOneEntity (entityType, attributes) {
 }
 
 /**
- *
- * @param {String} entityType
- * @param {String} entityId
- * @return {Function}
- */
-export function deleteOneEntity (entityType, entityId) {
-  return function (dispatch) {
-    API.deleteOne(entityType, entityId).then(() => {
-      dispatch(deleteEntity(entityType, entityId));
-    });
-  };
-}
-
-/**
  * @param {String} entityType
  * @returns {Function}
  */
@@ -38,6 +24,33 @@ export function fetchAllEntities (entityType) {
       entities.forEach(attributes => {
         dispatch(pushEntity(entityType, attributes));
       });
+    });
+  };
+}
+
+/**
+ * @param {String} entityType
+ * @param {String} entityId
+ * @param {Object} attributes
+ */
+export function updateOneEntity (entityType, entityId, attributes) {
+  return function (dispatch) {
+    API.updateOne(entityType, entityId, attributes).then(() => {
+      dispatch(pushEntity(entityType, attributes));
+    });
+  };
+}
+
+/**
+ *
+ * @param {String} entityType
+ * @param {String} entityId
+ * @return {Function}
+ */
+export function deleteOneEntity (entityType, entityId) {
+  return function (dispatch) {
+    API.deleteOne(entityType, entityId).then(() => {
+      dispatch(deleteEntity(entityType, entityId));
     });
   };
 }

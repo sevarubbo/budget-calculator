@@ -60,6 +60,26 @@ export const API = {
   /**
    * @param {String} entityType
    * @param {String} entityId
+   * @param {Object} attributes
+   * @return {Promise.<Object>}
+   */
+  updateOne (entityType, entityId, attributes) {
+    return openDB().then(db => {
+      const transaction = db.transaction(entityType, 'readwrite');
+      const objectStore = transaction.objectStore(entityType);
+      const request = objectStore.put(attributes, entityId);
+
+      return new Promise(resolve => {
+        request.onsuccess = () => {
+          resolve(request.result);
+        };
+      });
+    });
+  },
+
+  /**
+   * @param {String} entityType
+   * @param {String} entityId
    * @return {Promise.<Array.<Object>>}
    */
   deleteOne (entityType, entityId) {
