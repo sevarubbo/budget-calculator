@@ -28,6 +28,15 @@ export default class SpendCategory extends React.Component {
    */
 
   /**
+   * @param {Category} category
+   */
+  deleteCategory (category) {
+    if (window.confirm(`Are you sure you want to delete category ${category.name}`)) {
+      this.props.deleteCategory(category.id);
+    }
+  }
+
+  /**
    * @returns {String}
    */
   render () {
@@ -39,7 +48,7 @@ export default class SpendCategory extends React.Component {
           { category.name }
         </td>
         <td>
-          <button type='button' onClick={() => this.props.deleteCategory(category.id)}>Delete</button>
+          <button type='button' onClick={() => this.deleteCategory(category)}>Delete</button>
         </td>
         <td>
           <input value={category.totalSpend}/>
