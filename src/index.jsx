@@ -5,15 +5,13 @@ import {applyMiddleware, createStore} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import reducers from './reducers';
-import TotalSpendContainer from './components/TotalSpend/Container';
+import SpendCategoriesContainer from './components/SpendCategories/Container';
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware)));
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
-      <TotalSpendContainer/>
-    </div>
+    <SpendCategoriesContainer/>
   </Provider>,
   document.getElementById('root')
 );

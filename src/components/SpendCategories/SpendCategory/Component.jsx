@@ -11,11 +11,21 @@ export default class SpendCategory extends React.Component {
     super(...arguments);
 
     this.state = {
-      totalSpend: this.props.category.totalSpend,
       categoryAttributes: {
         ...this.props.category
       }
     };
+  }
+
+  /**
+   * Properties
+   */
+
+  /**
+   * @return {Boolean}
+   */
+  get hasUnsavedAttributes () {
+    return this.state.categoryAttributes.totalSpend !== this.props.category.totalSpend;
   }
 
   /**
@@ -75,10 +85,13 @@ export default class SpendCategory extends React.Component {
           <button type='button' onClick={() => this.deleteCategory(category)}>Delete</button>
         </td>
         <td>
-          <input value={this.state.categoryAttributes.totalSpend} onChange={e => this.updateCategory('totalSpend', e.target.value)}/>
+          <input
+            value={this.state.categoryAttributes.totalSpend}
+            onChange={e => this.updateCategory('totalSpend', e.target.value)}
+          />
         </td>
         <td>
-          <button onClick={() => this.saveCategory()}>Save</button>
+          <button disabled={!this.hasUnsavedAttributes} onClick={() => this.saveCategory()}>Save</button>
         </td>
       </tr>
     );

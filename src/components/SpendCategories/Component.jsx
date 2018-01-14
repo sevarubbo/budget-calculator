@@ -4,7 +4,7 @@ import './styles.scss';
 import SpendCategoryContainer from './SpendCategory/Container';
 import Category from '../../models/category';
 
-export default class TotalSpend extends React.Component {
+export default class SpendCategories extends React.Component {
   /**
    *
    */
@@ -82,7 +82,7 @@ export default class TotalSpend extends React.Component {
   }
 }
 
-TotalSpend.propTypes = {
+SpendCategories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.instanceOf(Category)),
 
   fetchCategories: PropTypes.func,
