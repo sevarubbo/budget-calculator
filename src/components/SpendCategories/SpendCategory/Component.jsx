@@ -85,13 +85,17 @@ export default class SpendCategory extends React.Component {
           <button type='button' onClick={() => this.deleteCategory(category)}>Delete</button>
         </td>
         <td>
-          <input
-            value={this.state.categoryAttributes.totalSpend}
-            onChange={e => this.updateCategory('totalSpend', e.target.value)}
-          />
-        </td>
-        <td>
-          <button disabled={!this.hasUnsavedAttributes} onClick={() => this.saveCategory()}>Save</button>
+          <form onSubmit={e => {e.preventDefault(); this.saveCategory();}}>
+            <input
+              type='number'
+              required={true}
+              min={0}
+              step={0.01}
+              value={this.state.categoryAttributes.totalSpend}
+              onChange={e => this.updateCategory('totalSpend', e.target.value)}
+            />
+            <button type='submit' disabled={!this.hasUnsavedAttributes}>Save</button>
+          </form>
         </td>
       </tr>
     );
