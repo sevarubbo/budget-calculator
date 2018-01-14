@@ -10,7 +10,12 @@ export default class SpendCategory extends React.Component {
   constructor () {
     super(...arguments);
 
-    this.state = {};
+    this.state = {
+      totalSpend: this.props.category.totalSpend,
+      categoryAttributes: {
+        ...this.props.category
+      }
+    };
   }
 
   /**
@@ -28,12 +33,31 @@ export default class SpendCategory extends React.Component {
    */
 
   /**
-   * @param {Category} category
    */
-  deleteCategory (category) {
-    if (window.confirm(`Are you sure you want to delete category ${category.name}`)) {
-      this.props.deleteCategory(category.id);
+  deleteCategory () {
+    if (window.confirm(`Are you sure you want to delete category ${this.props.category.name}`)) {
+      this.props.deleteCategory(this.props.category.id);
     }
+  }
+
+  /**
+   * @param {String} attribute
+   * @param {*} value
+   */
+  updateCategory (attribute, value) {
+    this.setState({
+      categoryAttributes: {
+        ...this.state.categoryAttributes,
+        [attribute]: value
+      }
+    });
+  }
+
+  /**
+   *
+   */
+  saveCategory () {
+    this.props.updateCategory(this.props.category.id, this.state.categoryAttributes);
   }
 
   /**
@@ -51,7 +75,10 @@ export default class SpendCategory extends React.Component {
           <button type='button' onClick={() => this.deleteCategory(category)}>Delete</button>
         </td>
         <td>
-          <input value={category.totalSpend}/>
+          <input value={this.state.categoryAttributes.totalSpend} onChange={e => this.updateCategory('totalSpend', e.target.value)}/>
+        </td>
+        <td>
+          <button onClick={() => this.saveCategory()}>Save</button>
         </td>
       </tr>
     );
@@ -61,6 +88,7 @@ export default class SpendCategory extends React.Component {
 SpendCategory.propTypes = {
   category: PropTypes.instanceOf(Category),
 
+  updateCategory: PropTypes.func,
   deleteCategory: PropTypes.func
 };
 

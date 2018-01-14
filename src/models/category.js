@@ -7,6 +7,9 @@ function attr () {
 class Category extends Model {}
 
 Category.fields = {
+  /**
+   * @memberOf Category#
+   */
   name: attr(),
   totalSpend: attr()
 };

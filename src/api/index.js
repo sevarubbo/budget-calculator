@@ -64,14 +64,21 @@ export const API = {
    * @return {Promise.<Object>}
    */
   updateOne (entityType, entityId, attributes) {
-    return openDB().then(db => {
+    return this.getOne(entityType, entityId).then(result => {
+      return openDB().then(db => [result, db]);
+    }).then(([result, db]) => {
       const transaction = db.transaction(entityType, 'readwrite');
       const objectStore = transaction.objectStore(entityType);
-      const request = objectStore.put(attributes, entityId);
+
+      Object.keys(attributes).forEach(attribute => {
+        result[attribute] = attributes[attribute];
+      });
+
+      const request = objectStore.put(result);
 
       return new Promise(resolve => {
         request.onsuccess = () => {
-          resolve(request.result);
+          this.getOne(entityType, request.result).then(resolve);
         };
       });
     });

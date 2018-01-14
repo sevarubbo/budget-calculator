@@ -35,8 +35,8 @@ export function fetchAllEntities (entityType) {
  */
 export function updateOneEntity (entityType, entityId, attributes) {
   return function (dispatch) {
-    API.updateOne(entityType, entityId, attributes).then(() => {
-      dispatch(pushEntity(entityType, attributes));
+    API.updateOne(entityType, entityId, attributes).then(result => {
+      dispatch(pushEntity(entityType, result));
     });
   };
 }

@@ -1,6 +1,5 @@
 /**
  * @class Model
- * @property {String} id
  */
 export default class Model {
   constructor (attributes) {
@@ -9,3 +8,8 @@ export default class Model {
     });
   }
 }
+
+/**
+ * @name id
+ * @memberOf Model#
+ */
