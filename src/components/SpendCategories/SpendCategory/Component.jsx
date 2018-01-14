@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
-import Category from '../../../models/category';
+import Category from '../../../models/Category';
 
 export default class SpendCategory extends React.Component {
   /**

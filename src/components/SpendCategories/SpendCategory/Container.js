@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Component from './Component';
 import {deleteOneEntity, updateOneEntity} from '../../../actions/async/entity';
-import Category from '../../../models/category';
+import Category from '../../../models/Category';
 
 /**
  * @return {Object}

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 import SpendCategoryContainer from './SpendCategory/Container';
-import Category from '../../models/category';
+import Category from '../../models/Category';
 
 export default class SpendCategories extends React.Component {
   /**
@@ -59,7 +59,7 @@ export default class SpendCategories extends React.Component {
     /** @type {Array.<Object>} */
     const categories = this.props.categories;
     return (
-      <div className='total-spend'>
+      <div className='spend-categories'>
         <table>
           <tbody>
             { categories.map(category =>
@@ -86,7 +86,6 @@ SpendCategories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.instanceOf(Category)),
 
   fetchCategories: PropTypes.func,
-  createCategory: PropTypes.func,
-  deleteCategory: PropTypes.func
+  createCategory: PropTypes.func
 };
 
