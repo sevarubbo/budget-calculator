@@ -1,8 +1,10 @@
-import _ from 'lodash';
+import {upperFirst, uniq} from 'lodash';
 import Model from '../core/model';
-import Category from '../models/category';
+import Category from '../models/Category';
+import IncomeCategory from '../models/IncomeCategory';
 
 Model.register(Category);
+Model.register(IncomeCategory);
 
 let lastTemporaryId = 0;
 
@@ -21,7 +23,7 @@ function pushEntity (state = initialState, action) {
     byId: {},
     all: []
   };
-  const EntityModel = Model.getModel('Category');
+  const EntityModel = Model.getModel(upperFirst(action.entityType));
 
   return {
     ...state,
@@ -40,7 +42,7 @@ function pushEntity (state = initialState, action) {
         }
 
         return {
-          all: _.uniq([...entityState.all, entityId])
+          all: uniq([...entityState.all, entityId])
         };
       })()
     },

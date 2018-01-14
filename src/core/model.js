@@ -20,11 +20,19 @@ export default class Model {
    * @return {Model}
    */
   static getModel (name) {
+    if (!Model.models[name]) {
+      throw `Model "${name}" is not registered`;
+    }
+
     return Model.models[name];
   }
 }
 
 Model.models = {};
+
+Model.attr = function () {
+
+};
 
 /**
  * @name id
