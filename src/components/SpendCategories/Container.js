@@ -2,14 +2,14 @@ import {connect} from 'react-redux';
 import Component from './Component';
 import {getEntities} from '../../getters/entity';
 import {createOneEntity, fetchAllEntities} from '../../actions/async/entity';
-import Category from '../../models/category';
 
 /**
  * @param {Object} state
  * @return {Object}
  */
 function mapStateToProps (state) {
-  const categories = getEntities(state, 'category').map(entity => new Category(entity));
+  /** @type {Array.<Category>} */
+  const categories = getEntities(state, 'category');
 
   return {
     categories

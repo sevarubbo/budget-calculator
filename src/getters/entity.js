@@ -3,10 +3,14 @@
  * @param {Object} state
  * @param {String} entityType
  * @param {Object} [subsetIdentifier]
- * @return {Array.<Object>}
+ * @return {Array.<Model>}
  */
 export function getEntities (state, entityType, subsetIdentifier) {
   subsetIdentifier = subsetIdentifier ? JSON.stringify(subsetIdentifier) : 'all';
+
+  if (!state.entity[entityType]) {
+    return [];
+  }
 
   return state.entity[entityType][subsetIdentifier].map(entityId => {
     return getEntityById(state, entityType, entityId);

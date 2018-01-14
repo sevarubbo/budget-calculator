@@ -7,7 +7,24 @@ export default class Model {
       this[attributeName] = attributes[attributeName];
     });
   }
+
+  /**
+   * @param {Model} model
+   */
+  static register (model) {
+    Model.models[model.name] = model;
+  }
+
+  /**
+   * @param {String} name
+   * @return {Model}
+   */
+  static getModel (name) {
+    return Model.models[name];
+  }
 }
+
+Model.models = {};
 
 /**
  * @name id

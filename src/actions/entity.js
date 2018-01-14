@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 /**
  * @param {String} entityType
  * @param {Object} attributes
@@ -8,7 +6,8 @@ import _ from 'lodash';
 export function pushEntity (entityType, attributes) {
   return function (dispatch) {
     return dispatch({
-      type: `PUSH_${_(entityType).snakeCase().toUpperCase()}`,
+      type: 'PUSH_ENTITY',
+      entityType,
       attributes
     });
   };
@@ -22,7 +21,8 @@ export function pushEntity (entityType, attributes) {
 export function deleteEntity (entityType, entityId) {
   return function (dispatch) {
     return dispatch({
-      type: `DELETE_${_(entityType).snakeCase().toUpperCase()}`,
+      type: 'DELETE_ENTITY',
+      entityType,
       id: entityId
     });
   };

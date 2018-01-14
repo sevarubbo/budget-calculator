@@ -14,4 +14,6 @@ Category.fields = {
   totalSpend: attr()
 };
 
+Model.register(Category);
+
 export default Category;
