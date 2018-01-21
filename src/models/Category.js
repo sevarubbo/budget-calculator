@@ -1,13 +1,19 @@
 import Model from '../core/model';
 
-class Category extends Model {}
-
-Category.fields = {
+class Category extends Model {
   /**
-   * @memberOf Category#
+   * @return {String}
    */
-  name: Model.attr(),
-  totalSpend: Model.attr()
-};
+  get name () {
+    return this.getAttribute('name');
+  }
+
+  /**
+   * @return {Number}
+   */
+  get totalSpend () {
+    return this.getAttribute('totalSpend');
+  }
+}
 
 export default Category;

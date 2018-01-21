@@ -2,10 +2,26 @@
  * @class Model
  */
 export default class Model {
-  constructor (attributes) {
-    Object.keys(attributes).map(attributeName => {
-      this[attributeName] = attributes[attributeName];
-    });
+  /**
+   * @param {Object} entityData
+   * @param {String} entityData.id
+   * @param {Object} entityData.attributes
+   * @param {Object} entityData.changedAttributes
+   */
+  constructor (entityData) {
+    this.id = entityData.id;
+    this.attributes = entityData.attributes;
+    this.changedAttributes = entityData.changedAttributes;
+  }
+
+  /**
+   * @param attributeName
+   * @return {*}
+   */
+  getAttribute (attributeName) {
+    return this.changedAttributes[attributeName]
+      ? this.changedAttributes[attributeName]
+      : this.attributes[attributeName];
   }
 
   /**
@@ -29,12 +45,3 @@ export default class Model {
 }
 
 Model.models = {};
-
-Model.attr = function () {
-
-};
-
-/**
- * @name id
- * @memberOf Model#
- */

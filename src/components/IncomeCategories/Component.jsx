@@ -65,7 +65,7 @@ export default class IncomeCategories extends React.Component {
           </div>
         ) }
         { this.state.isAddingIncomeCategory &&
-          <form onSubmit={(e) => {e.preventDefault(); this.addIncomeCategory();}}>
+          <form onSubmit={e => {e.preventDefault(); this.addIncomeCategory();}}>
             <input
               type='text'
               required={true}

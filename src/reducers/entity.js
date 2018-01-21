@@ -23,6 +23,11 @@ function pushEntity (state = initialState, action) {
     byId: {},
     all: []
   };
+  const existingEntity = entityState.byId[entityId] || {
+    id: entityId,
+    attributes: {},
+    changedAttributes: {}
+  };
   const EntityModel = Model.getModel(upperFirst(action.entityType));
 
   return {
@@ -32,8 +37,12 @@ function pushEntity (state = initialState, action) {
       byId: {
         ...entityState.byId,
         [entityId]: new EntityModel({
-          ...entityState.byId[entityId] || {},
-          ...action.attributes
+          ...existingEntity,
+          attributes: {
+            ...existingEntity.attributes,
+            ...action.attributes
+          },
+          changedAttributes: {}
         })
       },
       ...(() => {

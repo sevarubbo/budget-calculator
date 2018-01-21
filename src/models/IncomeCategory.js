@@ -1,12 +1,12 @@
 import Model from '../core/model';
 
-class IncomeCategory extends Model {}
-
-IncomeCategory.fields = {
+class IncomeCategory extends Model {
   /**
-   * @memberOf IncomeCategory#
+   * @return {String}
    */
-  name: Model.attr()
-};
+  get name () {
+    return this.getAttribute('name');
+  }
+}
 
 export default IncomeCategory;
