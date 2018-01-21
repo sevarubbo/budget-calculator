@@ -5,17 +5,14 @@ import {applyMiddleware, createStore} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import reducers from './reducers';
-import IncomeCategoriesContainer from './components/IncomeCategories/Container';
-import SpendCategoriesContainer from './components/SpendCategories/Container';
+
+import App from './components/App/Component';
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware)));
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
-      <IncomeCategoriesContainer/>
-      <SpendCategoriesContainer/>
-    </div>
+    <App />
   </Provider>,
   document.getElementById('root')
 );
